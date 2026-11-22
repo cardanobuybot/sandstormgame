@@ -15,9 +15,9 @@ export default function Hero() {
         <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-sand-300/80 mb-4 md:mb-6">
           Independent game studio
         </p>
-        <h1 className="font-display font-bold tracking-tight leading-[0.9] text-sand-50
-                       text-[14vw] md:text-[9vw] lg:text-[8rem]">
-          Sandstorm<br className="hidden md:block" />
+        <h1 className="font-display font-bold tracking-tight leading-[0.9] text-sand-50 break-words
+                       text-[13vw] md:text-[8.5vw] lg:text-[7.5rem] xl:text-[9rem]">
+          Sandstorm<br />
           <span className="text-sand-300">Game</span>
         </h1>
         <p className="mt-6 md:mt-10 max-w-xl text-sand-100/70 text-base md:text-lg leading-relaxed">
