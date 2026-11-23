@@ -12,6 +12,13 @@ export default function Hero() {
       <div className="absolute inset-0 -z-10 opacity-40"
            style={{ backgroundImage: 'radial-gradient(#242424 1px, transparent 1px)', backgroundSize: '28px 28px' }} />
       <div className="relative max-w-7xl mx-auto px-6 md:px-10 pb-16 md:pb-24 pt-32 w-full">
+        <img
+          src="/logo-mark.svg"
+          alt="Sandstorm Game logo"
+          width={128}
+          height={128}
+          className="block w-24 h-24 md:w-32 md:h-32 mb-5 md:mb-8 drop-shadow-[0_0_28px_rgba(246,196,108,0.22)]"
+        />
         <p className="text-xs md:text-sm uppercase tracking-[0.3em] text-sand-300/80 mb-4 md:mb-6">
           Independent game studio
         </p>
