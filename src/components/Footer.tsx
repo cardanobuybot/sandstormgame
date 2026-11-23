@@ -9,10 +9,10 @@ export default function Footer() {
             Want to say hi?<br />Playtest, press, or just ideas.
           </h3>
           <a
-            href="mailto:hello@sandstorm.game"
-            className="inline-block mt-6 font-display text-2xl md:text-3xl text-sand-300 hover:text-sand-200 underline underline-offset-4 decoration-sand-300/40 hover:decoration-sand-200/70 transition-colors"
+            href="mailto:duneofclash@gmail.com"
+            className="inline-block mt-6 [overflow-wrap:anywhere] font-display text-2xl md:text-3xl text-sand-300 hover:text-sand-200 underline underline-offset-4 decoration-sand-300/40 hover:decoration-sand-200/70 transition-colors"
           >
-            hello@sandstorm.game
+            duneofclash@gmail.com
           </a>
         </div>
         <div className="md:col-span-6 md:pl-10 flex flex-col justify-between gap-6">
