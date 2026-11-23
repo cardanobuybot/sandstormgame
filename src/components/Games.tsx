@@ -45,9 +45,9 @@ export default function Games() {
             <article key={g.title}
               className="group relative rounded-2xl overflow-hidden border border-white/5 bg-ink-800/60 hover:bg-ink-700/70 transition-colors">
               <div className="aspect-[16/10] relative overflow-hidden"
-                   style={{ background: 'linear-gradient(135deg, #866534 0%, #242424 100%)' }}>
+                   style={{ background: 'linear-gradient(135deg, #9a4a22 0%, #2a1c10 100%)' }}>
                 <div className="absolute inset-0 opacity-30"
-                     style={{ backgroundImage: 'radial-gradient(#0a0a0a 1px, transparent 1px)', backgroundSize: '8px 8px' }} />
+                     style={{ backgroundImage: 'radial-gradient(#0e0905 1px, transparent 1px)', backgroundSize: '8px 8px' }} />
                 <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between">
                   <StatusChip status={g.status} />
                   <span className="text-[10px] uppercase tracking-widest text-sand-50/60">{g.year}</span>

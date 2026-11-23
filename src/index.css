@@ -5,7 +5,7 @@
 @layer base {
   html { scroll-behavior: smooth; }
   body { -webkit-font-smoothing: antialiased; }
-  ::selection { background: #c5a05c; color: #0a0a0a; }
+  ::selection { background: #f6c46c; color: #1e140b; }
 }
 
 @layer utilities {
