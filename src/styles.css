@@ -134,7 +134,7 @@ strong, b { font-weight: 700; }
 .shots figure { flex: 0 0 auto; width: min(62vw, 250px); margin: 0; scroll-snap-align: center; }
 .shots img, .phone img { display: block; width: 100%; border: var(--edge); border-radius: 22px; box-shadow: var(--drop); background: var(--plate); }
 .shots figcaption, .phone figcaption { font-size: 0.875rem; color: var(--ink-soft); margin-top: 0.6rem; line-height: 1.4; }
-@media (min-width: 900px) { .shots { justify-content: center; overflow: visible; } .shots figure { width: 200px; } }
+@media (min-width: 900px) { .shots { justify-content: center; overflow: visible; } .shots figure { flex: 1 1 0; min-width: 0; width: auto; max-width: 200px; } }
 
 /* what you do: picture beside words */
 .duo { display: grid; gap: 1.6rem 2.4rem; margin-top: 1.6rem; }
