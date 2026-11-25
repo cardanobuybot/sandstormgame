@@ -80,7 +80,8 @@ function scene(cover, titled) {
 }
 
 const html = (inner) => `<!doctype html><html><head><meta charset="utf-8"><style>${CSS}</style></head><body>${inner}</body></html>`;
-const badge = `<div class="badge"><img src="${pub('brand/mark-512.png')}"><div>Dune Clash<small>sandstormgame.xyz</small></div></div>`;
+// the simplified emblem (the one in the browser tab): it is 54 pixels wide here
+const badge = `<div class="badge"><img src="${pub('favicon.svg')}"><div>Dune Clash<small>sandstormgame.xyz</small></div></div>`;
 const titleSize = (t) => (t.length > 58 ? 50 : t.length > 44 ? 58 : t.length > 30 ? 66 : 76);
 
 const browser = await pw.chromium.launch({ channel: 'chrome' });
@@ -115,7 +116,7 @@ for (const a of loadArticles()) {
 if (!only.length) {
   // the site-wide pictures: the studio, the game, the list of guides
   const big = (src, w) => `<img src="${src}" style="position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);width:${w}px">`;
-  await render(`${scenery.replace(/right:(\d+)px/g, (m, v) => `right:${Number(v) + 120}px`)}${big(pub('brand/logo-stacked.svg'), 640)}`, path.join(root, 'public/og/default.jpg'), null, 86);
+  await render(`${scenery.replace(/right:(\d+)px/g, (m, v) => `right:${Number(v) + 120}px`)}${big(pub('brand/logo.svg'), 980)}`, path.join(root, 'public/og/default.jpg'), null, 86);
   await render(`<img class="key" src="${pub('img/dc/keyart-1920.webp')}" style="object-position:50% 38%"><div class="shade"></div><img src="${pub('img/dc/logo-900.webp')}" style="position:absolute;left:36px;bottom:30px;width:520px;filter:drop-shadow(0 6px 0 rgba(42,26,18,.5))"><div class="title" style="left:auto;right:56px;bottom:56px;text-align:right;font-size:44px;width:520px">Build. Raid.<br>Dodge the worm.</div>`, path.join(root, 'public/og/dune-clash.jpg'), null, 86);
   await render(titled('sprites u-infantry b-citadel-8 worm u-bulwark', 'Dune Clash guides and stories'), path.join(root, 'public/og/blog.jpg'), null, 84);
 }

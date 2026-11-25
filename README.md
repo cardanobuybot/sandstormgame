@@ -105,7 +105,7 @@ When the Android version is public, set `googlePlay.status` to `'live'` in `site
 | --- | --- |
 | `tools/check.mjs` | Checks the built site. |
 | `tools/make-covers.mjs` | Draws the cover and the share picture of every article, and the site's share pictures. |
-| `tools/make-logo.py` | Draws the studio logo and the icons. |
+| `tools/make-logo.py` | Draws the studio logo and the icons (needs fonttools, rsvg-convert, ImageMagick). Run `make-covers.mjs` after it: the share pictures carry the emblem. |
 | `tools/export-sprites.py` | Cuts the game's sprites into `public/img/dc/sprites/`. |
 | `tools/game-shots.mjs` | Takes the in-game screenshots used in the guides. |
 | `tools/indexnow.mjs` | Tells Bing, Yandex and other IndexNow search engines about new pages. Runs by itself after every push (`.github/workflows/indexnow.yml`). |

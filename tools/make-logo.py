@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-"""Draws the Sandstorm Game logo: a dust devil with an attitude in front of the sun, and the wordmark.
+"""Draws the Sandstorm Game logo: a sand twister on a dune in front of the sun, and the wordmark.
 
     python3 tools/make-logo.py [path/to/rubik-latin-900-normal.woff]
 
-Writes SVG and PNG files into public/brand/ and the favicons into public/. Needs fonttools and rsvg-convert.
+Writes SVG and PNG files into public/brand/ and the favicons into public/. Needs fonttools, rsvg-convert and,
+for favicon.ico, ImageMagick. Afterwards run node tools/make-covers.mjs: the share pictures carry the emblem.
 The letters are Rubik Black (SIL Open Font License) turned into outlines, so the files need no font.
 """
 import math
@@ -41,91 +42,153 @@ def text_path(font, text, size, x, base, tracking=0.0, skew=0.0):
     return pen.getCommands(), cx - x
 
 
-def twister(cx, top, scale=1.0):
-    """The dust devil: six discs, widest on top, the stack swaying as it goes down. Returns svg."""
-    # (width, height, x shift, tilt in degrees, fill)
-    bands = [
-        (318, 80, 0, -8, '#fffaf0'),
-        (268, 104, -20, 4, '#fff1d2'),
-        (206, 66, -4, -5, '#ffe3aa'),
-        (154, 58, 20, 6, '#fbd07e'),
-        (104, 50, 26, -6, '#f4b55c'),
-        (58, 42, 8, 8, '#ea9a45'),
-    ]
-    geo, y = [], top
-    for i, (w, h, dx, rot, fill) in enumerate(bands):
-        w, h, dx = w * scale, h * scale, dx * scale
-        geo.append((cx + dx, y + h / 2, w / 2, h / 2, rot, fill))
-        y += h * (0.62 if i != 1 else 0.7)
-    parts = []
-    # drawn from the tip up, so each disc sits on the one below
-    for i, (x, yy, rx, ry, rot, fill) in reversed(list(enumerate(geo))):
-        g = f'<g transform="rotate({rot} {x:.1f} {yy:.1f})">'
-        g += f'<ellipse cx="{x:.1f}" cy="{yy + 7 * scale:.1f}" rx="{rx:.1f}" ry="{ry:.1f}" fill="{INK}"/>'
-        g += f'<ellipse cx="{x:.1f}" cy="{yy:.1f}" rx="{rx:.1f}" ry="{ry:.1f}" fill="{fill}" stroke="{INK}" stroke-width="{11 * scale:.1f}"/>'
-        # the shaded underside and a streak of light
-        g += (f'<path d="M{x - rx * 0.88:.1f} {yy + ry * 0.24:.1f} A{rx:.1f} {ry:.1f} 0 0 0 {x + rx * 0.88:.1f} {yy + ry * 0.24:.1f} '
-              f'A{rx * 1.04:.1f} {ry * 0.6:.1f} 0 0 1 {x - rx * 0.88:.1f} {yy + ry * 0.24:.1f}Z" fill="{SAND_D}" opacity=".4"/>')
-        if i != 1:
-            g += (f'<path d="M{x - rx * 0.62:.1f} {yy - ry * 0.4:.1f} Q{x - rx * 0.1:.1f} {yy - ry * 0.78:.1f} {x + rx * 0.36:.1f} {yy - ry * 0.5:.1f}" '
-                  f'fill="none" stroke="#fff" stroke-width="{6 * scale:.1f}" stroke-linecap="round" opacity=".9"/>')
-        g += '</g>'
-        if i == 1:
-            g += face(x, yy, rx, ry, rot, scale)
-        parts.append(g)
-    return ''.join(parts), y
+def crescent(cx, cy, L1, L2, T, rot, fill, shade, stroke=10, drop=7):
+    """One band of the twister: the front half of a ring of sand, tips up and belly down.
+    L1, L2: how far the left and the right tip reach; T: thickness."""
+    h, a = T * 0.3, T * 0.16
+    b = a + T * 1.25
+
+    def pt(x, y):
+        return f'{cx + x:.1f} {cy + y:.1f}'
+    d = (f'M{pt(-L1, -h)} C{pt(-L1 * 0.62, b)} {pt(L2 * 0.62, b)} {pt(L2, -h)} '
+         f'C{pt(L2 * 0.6, a)} {pt(-L1 * 0.6, a)} {pt(-L1, -h)}Z')
+    # the underside in shade, and a streak of light on the upper edge
+    m = a + T * 0.72
+    d2 = (f'M{pt(-L1 * 0.9, -h * 0.55)} C{pt(-L1 * 0.58, b * 0.985)} {pt(L2 * 0.58, b * 0.985)} {pt(L2 * 0.9, -h * 0.55)} '
+          f'C{pt(L2 * 0.56, m)} {pt(-L1 * 0.56, m)} {pt(-L1 * 0.9, -h * 0.55)}Z')
+    hl = f'M{pt(-L1 * 0.52, a * 0.75 + T * 0.1 - h * 0.25)} Q{pt(-L1 * 0.15, a * 0.75 + T * 0.26)} {pt(L2 * 0.2, a * 0.75 + T * 0.22)}'
+    o = f'<g transform="rotate({rot:.1f} {cx:.1f} {cy:.1f})">'
+    if drop:
+        o += f'<path d="{d}" transform="translate(0 {drop})" fill="{INK}" stroke="{INK}" stroke-width="{stroke}" stroke-linejoin="round"/>'
+    o += f'<path d="{d}" fill="{fill}" stroke="{INK}" stroke-width="{stroke}" stroke-linejoin="round"/>'
+    o += f'<path d="{d2}" fill="{shade}"/>'
+    o += f'<path d="{hl}" fill="none" stroke="#fff" stroke-width="{max(4, T * 0.12):.1f}" stroke-linecap="round" opacity=".9"/>'
+    return o + '</g>'
 
 
-def face(x, yy, rx, ry, rot, e):
-    """Eyes under heavy brows and half a grin, on the second disc. It looks where the storm is going."""
-    o = f'<g transform="rotate({rot} {x:.1f} {yy:.1f})">'
-    cy = yy + 10 * e
+# The funnel from the top down: reach left, reach right, thickness, fill, shade. Pale dust above, hot sand at the tip.
+BANDS = [
+    (150, 146, 58, '#fffaf0', '#ecd5a4'),
+    (132, 128, 54, '#fff1d2', '#e6c688'),
+    (108, 116, 50, '#ffe3aa', '#deb068'),
+    (94, 86, 45, '#fbd07e', '#d59646'),
+    (68, 74, 39, '#f6bb5c', '#cb8235'),
+    (54, 48, 33, '#ee9f42', '#be6d28'),
+    (34, 36, 27, '#e58a2b', '#ab5c1e'),
+    (20, 20, 21, '#d97a22', '#9c5219'),
+]
+
+
+# The same funnel for 16 to 32 pixels: five thick rings and nothing else.
+BANDS_SMALL = [
+    (182, 160, 88, '#fffaf0', '#ecd5a4'),
+    (122, 146, 80, '#ffe9b8', '#e2bb77'),
+    (110, 86, 70, '#fbd07e', '#d59646'),
+    (56, 72, 58, '#f0a548', '#c27430'),
+    (38, 28, 44, '#de8226', '#a3571b'),
+]
+
+
+def twister(p0, p1, p2, lean=0.7, bands=BANDS, stroke=10):
+    """The sand twister: rings strung along a curve from p0 (the top) through p1 to the tip p2, so the funnel bends
+    the way a real one does. Each ring lies across the curve, more so towards the tip. Returns (svg, positions)."""
+    total = sum(b[2] for b in bands)
+    geo, acc = [], 0.0
+    for (L1, L2, T, fill, shade) in bands:
+        t = (acc + T * 0.2) / total
+        acc += T
+        x = (1 - t) ** 2 * p0[0] + 2 * (1 - t) * t * p1[0] + t * t * p2[0]
+        y = (1 - t) ** 2 * p0[1] + 2 * (1 - t) * t * p1[1] + t * t * p2[1]
+        dx = 2 * (1 - t) * (p1[0] - p0[0]) + 2 * t * (p2[0] - p1[0])
+        dy = 2 * (1 - t) * (p1[1] - p0[1]) + 2 * t * (p2[1] - p1[1])
+        rot = (math.degrees(math.atan2(dy, dx)) - 90) * (0.2 + lean * t)
+        geo.append((x, y, L1, L2, T, rot, fill, shade))
+    out = []
+    # drawn from the tip up, so each ring overlaps the one below; every other ring tips the other way: it spins
+    for i, (x, y, L1, L2, T, rot, fill, shade) in reversed(list(enumerate(geo))):
+        out.append(crescent(x, y, L1, L2, T, rot + (4 if i % 2 else -4), fill, shade, stroke=stroke, drop=7 if stroke <= 10 else 0))
+    return ''.join(out), geo
+
+
+def eyes(geo):
+    """The variant with a character: two eyes glaring out of the storm, under the top ring."""
+    x, y, L1, L2, T, rot, _, _ = geo[1]
+    cy = y + T * 0.62
+    o = f'<g transform="rotate({rot:.1f} {x:.1f} {y:.1f})">'
     for side in (-1, 1):
-        ex = x + side * 56 * e + 16 * e
-        # the white: flat on top where the brow cuts it, round below
-        o += (f'<path d="M{ex - 34 * e:.1f} {cy - 10 * e + side * 7 * e:.1f} L{ex + 34 * e:.1f} {cy - 10 * e - side * 7 * e:.1f} '
-              f'Q{ex + 30 * e:.1f} {cy + 26 * e:.1f} {ex:.1f} {cy + 26 * e:.1f} Q{ex - 30 * e:.1f} {cy + 26 * e:.1f} {ex - 34 * e:.1f} {cy - 10 * e + side * 7 * e:.1f}Z" '
-              f'fill="#fff" stroke="{INK}" stroke-width="{8 * e:.1f}" stroke-linejoin="round"/>')
-        o += f'<circle cx="{ex + 8 * e:.1f}" cy="{cy + 6 * e:.1f}" r="{13 * e:.1f}" fill="{INK}"/>'
-        o += f'<circle cx="{ex + 13 * e:.1f}" cy="{cy + 1 * e:.1f}" r="{4.2 * e:.1f}" fill="#fff"/>'
-        # the brow: a slab of ink pressing down towards the middle
-        o += (f'<path d="M{ex - side * 40 * e:.1f} {cy - 5 * e:.1f} L{ex + side * 34 * e:.1f} {cy - 27 * e:.1f}" '
-              f'stroke="{INK}" stroke-width="{13 * e:.1f}" stroke-linecap="round"/>')
-    o += '</g>'
-    return o
+        ex = x + side * 44 + 6
+        o += (f'<path d="M{ex - 30:.1f} {cy - 12 + side * 8:.1f} L{ex + 30:.1f} {cy - 12 - side * 8:.1f} '
+              f'Q{ex + 26:.1f} {cy + 20:.1f} {ex:.1f} {cy + 20:.1f} Q{ex - 26:.1f} {cy + 20:.1f} {ex - 30:.1f} {cy - 12 + side * 8:.1f}Z" '
+              f'fill="#fff" stroke="{INK}" stroke-width="8" stroke-linejoin="round"/>')
+        o += f'<circle cx="{ex + 6:.1f}" cy="{cy + 4:.1f}" r="11" fill="{INK}"/>'
+        o += f'<circle cx="{ex + 10:.1f}" cy="{cy:.1f}" r="3.6" fill="#fff"/>'
+        o += f'<path d="M{ex - side * 36:.1f} {cy - 6:.1f} L{ex + side * 30:.1f} {cy - 26:.1f}" stroke="{INK}" stroke-width="12" stroke-linecap="round"/>'
+    return o + '</g>'
 
 
-def emblem(size=512, badge=True):
-    """Square emblem. badge=True: a rounded square with a sky; False: only the sun, the storm and the sand."""
+def emblem(size=512, badge=True, face=False, bleed=False):
+    """Square emblem: a sand twister on a dune in front of the sun.
+    badge=True: a rounded square with a sky; False: only the sun, the twister and a mound of sand.
+    face=True: the variant with eyes.
+    bleed=True: the badge without rounded corners and without its outline, for a phone's home screen, which cuts
+    the corners itself and paints anything transparent black."""
     s = size / 512
     o = []
     if badge:
-        o.append(f'<clipPath id="clip"><rect x="0" y="0" width="512" height="512" rx="112"/></clipPath><g clip-path="url(#clip)">')
+        o.append(f'<clipPath id="clip"><rect x="0" y="0" width="512" height="512" rx="{0 if bleed else 112}"/></clipPath><g clip-path="url(#clip)">')
         o.append(f'<rect width="512" height="512" fill="{TEAL}"/>')
         o.append(f'<path d="M0 0H512V150Q256 210 0 120Z" fill="#3cc4b3"/>')
     # the sun, in rings like the one on the Dune Clash icon
-    o.append(f'<circle cx="322" cy="214" r="170" fill="{SUN_D}" stroke="{INK}" stroke-width="12"/>')
-    o.append(f'<circle cx="322" cy="214" r="134" fill="{SUN}"/>')
-    o.append(f'<circle cx="322" cy="214" r="96" fill="{SUN_L}"/>')
+    o.append(f'<circle cx="280" cy="236" r="180" fill="{SUN_D}" stroke="{INK}" stroke-width="12"/>')
+    o.append(f'<circle cx="280" cy="236" r="142" fill="{SUN}"/>')
+    o.append(f'<circle cx="280" cy="236" r="102" fill="{SUN_L}"/>')
     # sand: dunes across the badge, or a mound when the emblem stands alone
     if badge:
-        o.append(f'<path d="M-20 420 Q120 330 300 392 T540 372 V560 H-20Z" fill="{SAND_D}" stroke="{INK}" stroke-width="12" stroke-linejoin="round"/>')
-        o.append(f'<path d="M-20 470 Q160 398 330 446 T540 430 V560 H-20Z" fill="{SAND}" stroke="{INK}" stroke-width="12" stroke-linejoin="round"/>')
+        o.append(f'<path d="M-20 430 Q120 356 300 406 T540 388 V560 H-20Z" fill="{SAND_D}" stroke="{INK}" stroke-width="12" stroke-linejoin="round"/>')
+        o.append(f'<path d="M-20 478 Q160 412 330 454 T540 440 V560 H-20Z" fill="{SAND}" stroke="{INK}" stroke-width="12" stroke-linejoin="round"/>')
     else:
-        o.append(f'<path d="M40 470 Q150 372 300 404 Q420 376 486 470 Q262 512 40 470Z" fill="{SAND}" stroke="{INK}" stroke-width="12" stroke-linejoin="round"/>')
-    tw, _ = twister(226, 86, 1.0)
-    # dust kicked up where the tip touches the sand
-    o.append(f'<ellipse cx="246" cy="414" rx="84" ry="24" fill="{SAND_L}" stroke="{INK}" stroke-width="10"/>')
+        o.append(f'<path d="M30 474 Q140 380 290 410 Q410 384 482 474 Q256 512 30 474Z" fill="{SAND}" stroke="{INK}" stroke-width="12" stroke-linejoin="round"/>')
+    tw, geo = twister((256, 106), (296, 268), (226, 404))
+    # dust thrown up where the tip digs into the dune: outlines first, then the fills, so the puffs merge into one cloud
+    tipx, tipy = geo[-1][0], geo[-1][1]
+    puffs = ((-66, 22, 24), (58, 24, 24), (-34, 34, 31), (22, 36, 31), (-6, 18, 25))
+    for dx, dy, r in puffs:
+        o.append(f'<circle cx="{tipx + dx:.1f}" cy="{tipy + dy:.1f}" r="{r}" fill="{SAND_L}" stroke="{INK}" stroke-width="10"/>')
+    for dx, dy, r in puffs:
+        o.append(f'<circle cx="{tipx + dx:.1f}" cy="{tipy + dy:.1f}" r="{r - 5}" fill="{SAND_L}"/>')
     o.append(tw)
-    # bits of the desert going round with it
-    for x, y, r, rot, fill in ((92, 196, 15, 20, CREAM), (64, 300, 10, 50, SAND_L), (418, 118, 12, 35, CREAM), (444, 300, 16, 10, SAND_L), (130, 96, 9, 60, SAND_L)):
-        o.append(f'<rect x="{x - r}" y="{y - r}" width="{2 * r}" height="{2 * r}" rx="3" transform="rotate({rot} {x} {y})" fill="{fill}" stroke="{INK}" stroke-width="7"/>')
-    for d in ('M52 236 Q86 222 118 236', 'M400 208 Q438 196 470 214', 'M70 148 Q96 138 120 146'):
+    if face:
+        o.append(eyes(geo))
+    # the wind around it, and bits of the desert going round
+    for d in ('M34 250 Q70 232 104 246', 'M410 206 Q448 190 484 208', 'M46 128 Q76 116 102 124', 'M400 318 Q432 306 462 320'):
         o.append(f'<path d="{d}" fill="none" stroke="{INK}" stroke-width="8" stroke-linecap="round"/>')
+    for x, y, r, rot, fill in ((62, 150, 12, 20, CREAM), (58, 322, 9, 50, SAND_L), (452, 104, 10, 35, CREAM), (112, 78, 8, 60, SAND_L), (470, 262, 8, 15, CREAM)):
+        o.append(f'<rect x="{x - r}" y="{y - r}" width="{2 * r}" height="{2 * r}" rx="3" transform="rotate({rot} {x} {y})" fill="{fill}" stroke="{INK}" stroke-width="7"/>')
     if badge:
         o.append('</g>')
-        o.append(f'<rect x="6" y="6" width="500" height="500" rx="106" fill="none" stroke="{INK}" stroke-width="12"/>')
+        if not bleed:
+            o.append(f'<rect x="6" y="6" width="500" height="500" rx="106" fill="none" stroke="{INK}" stroke-width="12"/>')
     return f'<g transform="scale({s})">' + ''.join(o) + '</g>'
+
+
+def emblem_small():
+    """The emblem for a browser tab: the same picture with everything fine taken out, so it holds at 16 pixels."""
+    o = ['<clipPath id="clip"><rect x="0" y="0" width="512" height="512" rx="112"/></clipPath><g clip-path="url(#clip)">']
+    o.append(f'<rect width="512" height="512" fill="{TEAL}"/>')
+    o.append(f'<circle cx="262" cy="232" r="196" fill="{SUN_D}" stroke="{INK}" stroke-width="16"/>')
+    o.append(f'<circle cx="262" cy="232" r="140" fill="{SUN}"/>')
+    o.append(f'<path d="M-20 452 Q150 384 320 430 T540 414 V560 H-20Z" fill="{SAND}" stroke="{INK}" stroke-width="16" stroke-linejoin="round"/>')
+    tw, geo = twister((256, 92), (292, 262), (238, 412), bands=BANDS_SMALL, stroke=16)
+    tipx, tipy = geo[-1][0], geo[-1][1]
+    puffs = ((-62, 34, 34), (56, 36, 34), (-4, 44, 38))
+    for dx, dy, r in puffs:
+        o.append(f'<circle cx="{tipx + dx:.1f}" cy="{tipy + dy:.1f}" r="{r}" fill="{SAND_L}" stroke="{INK}" stroke-width="16"/>')
+    for dx, dy, r in puffs:
+        o.append(f'<circle cx="{tipx + dx:.1f}" cy="{tipy + dy:.1f}" r="{r - 8}" fill="{SAND_L}"/>')
+    o.append(tw)
+    o.append('</g>')
+    o.append(f'<rect x="8" y="8" width="496" height="496" rx="104" fill="none" stroke="{INK}" stroke-width="16"/>')
+    return ''.join(o)
 
 
 def wordmark(x, base, size):
@@ -170,10 +233,31 @@ def write(name, data, png=None):
 
 os.makedirs(OUT, exist_ok=True)
 
-# 1. the emblem alone: app icon, favicon
-write('mark.svg', svg(512, 512, emblem()), [(os.path.join(OUT, 'mark-512.png'), 512), (os.path.join(ROOT, 'public', 'apple-touch-icon.png'), 180),
-                                              (os.path.join(ROOT, 'public', 'favicon-96.png'), 96), (os.path.join(ROOT, 'public', 'icon-192.png'), 192), (os.path.join(ROOT, 'public', 'icon-512.png'), 512)])
-open(os.path.join(ROOT, 'public', 'favicon.svg'), 'w').write(svg(512, 512, emblem()))
+PUBLIC = os.path.join(ROOT, 'public')
+
+
+def render(data, targets):
+    """Draw an svg that is not kept as a file: targets are (path, width) pairs."""
+    tmp = os.path.join(OUT, '.tmp.svg')
+    open(tmp, 'w').write(data)
+    for target, width in targets:
+        subprocess.run(['rsvg-convert', '-w', str(width), tmp, '-o', target], check=True)
+    os.remove(tmp)
+
+
+# 1. the emblem alone: the press kit, the icon of the site when it is added to a home screen
+write('mark.svg', svg(512, 512, emblem()), [(os.path.join(OUT, 'mark-512.png'), 512), (os.path.join(PUBLIC, 'icon-192.png'), 192), (os.path.join(PUBLIC, 'icon-512.png'), 512)])
+render(svg(512, 512, emblem(bleed=True)), [(os.path.join(PUBLIC, 'apple-touch-icon.png'), 180)])
+# the variant with eyes, kept beside it for comparison; nothing on the site uses it
+render(svg(512, 512, emblem(face=True)), [(os.path.join(OUT, 'mark-eyes.png'), 512)])
+
+# 1a. the browser tab: the simplified emblem, as svg, as png, and as an .ico drawn at each size (needs ImageMagick)
+open(os.path.join(PUBLIC, 'favicon.svg'), 'w').write(svg(512, 512, emblem_small()))
+sizes = (48, 32, 16)
+render(svg(512, 512, emblem_small()), [(os.path.join(PUBLIC, 'favicon-96.png'), 96)] + [(os.path.join(OUT, f'.ico-{n}.png'), n) for n in sizes])
+subprocess.run(['convert'] + [os.path.join(OUT, f'.ico-{n}.png') for n in sizes] + [os.path.join(PUBLIC, 'favicon.ico')], check=True)
+for n in sizes:
+    os.remove(os.path.join(OUT, f'.ico-{n}.png'))
 
 # 2. emblem and wordmark side by side: the site header, letterheads
 size = 150
@@ -182,9 +266,11 @@ pad = 26
 mark_h = 300
 total_w = mark_h + 44 + ww + pad * 2 + 20
 total_h = mark_h + pad * 2
-body = (f'<g transform="translate({pad} {pad}) scale({mark_h / 512})">{emblem()}</g>'
-        f'<g transform="translate({pad + mark_h + 44} {pad + mark_h * 0.5 + cap * 0.28})">{wm}</g>')
-write('logo.svg', svg(total_w, total_h, body), [(os.path.join(OUT, 'logo.png'), 1600)])
+lockup = lambda mark: (f'<g transform="translate({pad} {pad}) scale({mark_h / 512})">{mark}</g>'
+                       f'<g transform="translate({pad + mark_h + 44} {pad + mark_h * 0.5 + cap * 0.28})">{wm}</g>')
+write('logo.svg', svg(total_w, total_h, lockup(emblem())), [(os.path.join(OUT, 'logo.png'), 1600)])
+# the same with the simplified emblem, for the site header, where the emblem is about 44 pixels high
+write('logo-small.svg', svg(total_w, total_h, lockup(emblem_small())))
 
 # 3. stacked: the storm over the name, for the hero and the press kit
 size = 190

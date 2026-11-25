@@ -1,7 +1,7 @@
 // The pages that are not articles: home, the game, the list of guides, about, press kit, privacy, 404.
 import { site, game, categories, disclaimer } from '../site.config.mjs';
 import * as G from './gamedata.mjs';
-import { esc, abs, longDate, storeButtons, cta, orgLd, websiteLd, gameLd, crumbsLd, faqLd, articleLd } from './html.mjs';
+import { esc, abs, ver, longDate, storeButtons, cta, orgLd, websiteLd, gameLd, crumbsLd, faqLd, articleLd } from './html.mjs';
 import { faqOf } from './content.mjs';
 
 const card = (a) => `<li><a class="card" href="${a.path}">
@@ -117,7 +117,7 @@ export function homePage(articles, logoBig) {
   const featured = ['what-is-dune-clash', 'dune-clash-beginners-guide', 'dune-clash-units-guide', 'how-to-beat-the-sandmaw', 'games-like-clash-of-clans-dune-clash', 'from-dune-ii-to-mobile-history-of-base-building-games']
     .map((s) => articles.find((a) => a.slug === s)).filter(Boolean);
   const body = `<section class="home-hero"><div class="wrap">
-<img class="logo-big" src="/brand/logo-stacked.svg" alt="Sandstorm Game" width="${logoBig.w}" height="${logoBig.h}">
+<img class="logo-big" src="${ver('/brand/logo-stacked.svg')}" alt="Sandstorm Game" width="${logoBig.w}" height="${logoBig.h}">
 <h1>Sandstorm Game is a one-person studio. Our first game, Dune Clash, is out now.</h1>
 <p>Strategy you can play in three minutes and think about for the rest of the day.</p>
 </div></section>
@@ -300,8 +300,8 @@ export function pressPage() {
 ${asset('/img/dc/logo-480.webp', 'Dune Clash logo', 480, 276, [['PNG', '/press/dune-clash-logo.png']])}
 ${asset('/img/dc/icon-256.webp', 'Dune Clash app icon', 256, 256, [['PNG 1024', '/press/dune-clash-icon-1024.png']])}
 ${asset('/img/dc/keyart-800.webp', 'Key art', 800, 450, [['JPG 2622×1475', '/press/dune-clash-key-art.jpg']])}
-${asset('/brand/mark-512.png', 'Sandstorm Game emblem', 512, 512, [['SVG', '/brand/mark.svg'], ['PNG', '/brand/mark-512.png']])}
-${asset('/brand/logo.png', 'Sandstorm Game logo', 1600, 396, [['SVG', '/brand/logo.svg'], ['PNG', '/brand/logo.png']])}
+${asset(ver('/brand/mark-512.png'), 'Sandstorm Game emblem', 512, 512, [['SVG', ver('/brand/mark.svg')], ['PNG', ver('/brand/mark-512.png')]])}
+${asset(ver('/brand/logo.png'), 'Sandstorm Game logo', 1600, 396, [['SVG', ver('/brand/logo.svg')], ['PNG', ver('/brand/logo.png')]])}
 </ul>
 <div class="prose"><h2 id="screenshots">Screenshots</h2><p>Phone screenshots, 1080×1920, taken from version ${game.version.ios}.</p></div>
 <ul class="assets">

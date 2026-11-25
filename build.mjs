@@ -9,7 +9,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { site, game, categories, disclaimer } from './site.config.mjs';
 import { loadArticles } from './src/content.mjs';
-import { page, abs, esc } from './src/html.mjs';
+import { page, abs, esc, ver } from './src/html.mjs';
 import { homePage, gamePage, blogIndex, articlePage, aboutPage, pressPage, privacyPage, notFoundPage } from './src/pages.mjs';
 import * as G from './src/gamedata.mjs';
 
@@ -30,7 +30,7 @@ const svgSize = (file) => {
   const m = /viewBox="0 0 ([\d.]+) ([\d.]+)"/.exec(readFileSync(path.join(root, 'public', file), 'utf8'));
   return { w: Math.round(Number(m[1])), h: Math.round(Number(m[2])) };
 };
-const logo = svgSize('brand/logo.svg');
+const logo = svgSize('brand/logo-small.svg');
 // shown 52 pixels high in the header
 const env = { css: cssName, year: today.slice(0, 4), logo: { w: Math.round((logo.w * 52) / logo.h), h: 52 } };
 
@@ -103,7 +103,7 @@ ${feedItems.map((a) => `<item><title>${esc(a.title)}</title><link>${abs(a.path)}
 
 writeFileSync(path.join(dist, 'site.webmanifest'), JSON.stringify({
   name: site.name, short_name: 'Sandstorm', start_url: '/', display: 'browser', background_color: '#fdefc9', theme_color: '#241810',
-  icons: [{ src: '/icon-192.png', sizes: '192x192', type: 'image/png' }, { src: '/icon-512.png', sizes: '512x512', type: 'image/png' }],
+  icons: [{ src: ver('/icon-192.png'), sizes: '192x192', type: 'image/png' }, { src: ver('/icon-512.png'), sizes: '512x512', type: 'image/png' }],
 }, null, 1));
 
 // ---------- for language models: a summary with links, and everything in one file ----------

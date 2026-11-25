@@ -1,5 +1,19 @@
 // Page chrome and the pieces pages share: head, header, footer, buttons, structured data.
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
+import { fileURLToPath } from 'node:url';
 import { site, game, disclaimer } from '../site.config.mjs';
+
+const stamps = new Map();
+/** The address of a file in public/ with a fingerprint of its content in the query. Browsers keep logos and icons for
+ *  a long time (a week for /brand/, and tab icons for as long as they like); a new drawing gets a new address. */
+export const ver = (url) => {
+  if (!stamps.has(url)) {
+    const data = readFileSync(fileURLToPath(new URL(`../public${url}`, import.meta.url)));
+    stamps.set(url, `${url}?v=${createHash('sha256').update(data).digest('hex').slice(0, 8)}`);
+  }
+  return stamps.get(url);
+};
 
 export const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 export const abs = (path) => (path.startsWith('http') ? path : site.url + path);
@@ -87,7 +101,7 @@ function header(current, logo) {
   const nav = NAV.map(([href, label]) => `<a href="${href}"${current === href ? ' aria-current="page"' : ''}>${label}</a>`).join('');
   return `<a class="skip" href="#main">Skip to content</a>
 <header class="top"><div class="wrap bar">
-<a class="brand" href="/" aria-label="Sandstorm Game, home"><img src="/brand/logo.svg" alt="Sandstorm Game" width="${logo.w}" height="${logo.h}"></a>
+<a class="brand" href="/" aria-label="Sandstorm Game, home"><img src="${ver('/brand/logo-small.svg')}" alt="Sandstorm Game" width="${logo.w}" height="${logo.h}"></a>
 <nav aria-label="Main">${nav}</nav>
 <a class="btn btn-go btn-small" href="/dune-clash/#get">Play</a>
 </div></header>`;
@@ -158,9 +172,9 @@ ${p.published ? `<meta property="article:published_time" content="${p.published}
 <meta name="twitter:image" content="${image}">
 <meta name="apple-itunes-app" content="app-id=${game.appStore.id}">
 <meta name="theme-color" content="#241810">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="icon" href="/favicon-96.png" type="image/png" sizes="96x96">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="icon" href="${ver('/favicon.svg')}" type="image/svg+xml">
+<link rel="icon" href="${ver('/favicon-96.png')}" type="image/png" sizes="96x96">
+<link rel="apple-touch-icon" href="${ver('/apple-touch-icon.png')}">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="alternate" type="application/rss+xml" title="${site.name}: guides and news" href="/feed.xml">
 <link rel="preload" href="/assets/fonts/rubik-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin>
