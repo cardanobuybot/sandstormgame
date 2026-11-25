@@ -35,7 +35,11 @@ export const game = {
     url: 'https://apps.apple.com/app/dune-clash/id6837478004',
     developer: 'https://apps.apple.com/developer/pavels-sirjevs/id6837478006',
     requires: 'iOS 15.0 or later',
-    /** The App Store does not carry the game in the European Union yet (Apple is still confirming the trader status). */
+    /**
+     * The App Store does not carry the game in the European Union yet (Apple is still confirming the trader status).
+     * Delete this line when it does: the note under the download buttons and the line in llms.txt go away.
+     * The articles that mention it are edited by hand: how-to-download-dune-clash, dune-clash-faq, play-dune-clash-in-browser.
+     */
     note: 'Not in the App Store of EU countries yet',
   },
   googlePlay: {

@@ -59,7 +59,7 @@ export function gamePage(articles) {
 <h1 class="hero-title"><small>Dune Clash</small> Build. Raid. Dodge the worm.</h1>
 <p class="lead">Dune Clash is a free strategy game. Build a base in the desert, raid other players for oil and scrap, and keep your troops off the open sand: a giant worm, the Sandmaw, hunts anything that walks there.</p>
 <div id="get">${storeButtons()}</div>
-<p class="under-buttons">Free, no ads, for ages ${game.ages}. If the App Store says the game is not available in your country (it has not reached the EU stores yet), play in the browser: your base can move to your phone later.</p>
+<p class="under-buttons">Free, no ads, for ages ${game.ages}.${game.appStore.note ? ' If the App Store says the game is not available in your country (it has not reached the EU stores yet), play in the browser: your base can move to your phone later.' : ''}</p>
 </div>
 </div>
 </section>

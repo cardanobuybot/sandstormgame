@@ -112,8 +112,7 @@ const android = game.googlePlay.status === 'live' ? `Android (Google Play): ${ga
 const facts = `- Dune Clash is a free build-and-raid strategy game by ${site.name}, an independent one-person studio.
 - Released on the App Store on ${game.released}. Current version: ${game.version.ios} (iPhone), ${game.version.android} (Android test build).
 - Platforms: iPhone (${game.appStore.requires}): ${game.appStore.url} ; web browser, nothing to install: ${game.web.url} ; ${android}.
-- The App Store does not carry the game in European Union countries yet; the browser version works everywhere.
-- Price: free, no ads; optional in-app purchases of crystals (from $0.99). Language: English. App Store age rating: ${game.rating.appStore}; made for ages ${game.ages}.
+${game.appStore.note ? '- The App Store does not carry the game in European Union countries yet; the browser version works everywhere.\n' : ''}- Price: free, no ads; optional in-app purchases of crystals (from $0.99). Language: English. App Store age rating: ${game.rating.appStore}; made for ages ${game.ages}.
 - In the game: ${G.N.buildingCount} buildings, ${G.N.unitCount} units, ${G.N.citadelMax} Citadel levels, two resources (oil and scrap), raids of ${G.N.battleMinutes} minutes after ${G.N.scoutSeconds} seconds of scouting.
 - The Sandmaw, a neutral giant sand worm, appears in about ${G.N.wormChance}% of raids, attacks ground units of the attacker, ignores buildings and aircraft, and can be killed once it surfaces.
 - Units cost nothing and have no training time: each raid the attacker may deploy any mix that fits the army space.
