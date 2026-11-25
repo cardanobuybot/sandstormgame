@@ -1,0 +1,529 @@
+{
+ "infantry": {
+  "name": "Infantry",
+  "desc": "Cheap riflemen. Strong in numbers, weak to blasts.",
+  "radius": 6,
+  "cooldown": 1,
+  "range": 0.8,
+  "speed": 2,
+  "housing": 1,
+  "flying": false,
+  "armor": "light",
+  "mech": false,
+  "prefers": "any",
+  "wallPathCost": 12,
+  "unlock": {
+   "building": "barracks",
+   "citadel": 1
+  },
+  "levels": [
+   {
+    "hp": 70,
+    "damage": 12,
+    "cost": 0,
+    "time": 0
+   },
+   {
+    "hp": 78,
+    "damage": 13,
+    "cost": 450,
+    "time": 60
+   },
+   {
+    "hp": 88,
+    "damage": 15,
+    "cost": 1800,
+    "time": 600
+   },
+   {
+    "hp": 98,
+    "damage": 17,
+    "cost": 5500,
+    "time": 3600
+   },
+   {
+    "hp": 110,
+    "damage": 19,
+    "cost": 13000,
+    "time": 10800
+   },
+   {
+    "hp": 123,
+    "damage": 21,
+    "cost": 32000,
+    "time": 28800
+   }
+  ]
+ },
+ "shooter": {
+  "name": "Ranger",
+  "desc": "Rocket troopers. Fire from range, extra damage to defenses.",
+  "radius": 5,
+  "cooldown": 1.1,
+  "range": 3.5,
+  "speed": 1.8,
+  "housing": 2,
+  "flying": false,
+  "armor": "light",
+  "mech": false,
+  "prefers": "any",
+  "mult": {
+   "defense": 1.5
+  },
+  "wallPathCost": 16,
+  "unlock": {
+   "building": "barracks",
+   "citadel": 2
+  },
+  "levels": [
+   {
+    "hp": 55,
+    "damage": 16,
+    "cost": 0,
+    "time": 0
+   },
+   {
+    "hp": 62,
+    "damage": 18,
+    "cost": 2100,
+    "time": 600
+   },
+   {
+    "hp": 69,
+    "damage": 20,
+    "cost": 6600,
+    "time": 3600
+   },
+   {
+    "hp": 77,
+    "damage": 22,
+    "cost": 16000,
+    "time": 10800
+   },
+   {
+    "hp": 87,
+    "damage": 25,
+    "cost": 38000,
+    "time": 28800
+   },
+   {
+    "hp": 97,
+    "damage": 28,
+    "cost": 76000,
+    "time": 57600
+   }
+  ]
+ },
+ "breaker": {
+  "name": "Ram",
+  "desc": "Tracked ram. Drives straight through walls.",
+  "radius": 9,
+  "cooldown": 1.2,
+  "range": 0.6,
+  "speed": 1.5,
+  "housing": 4,
+  "flying": false,
+  "armor": "armor",
+  "mech": true,
+  "prefers": "any",
+  "mult": {
+   "wall": 12
+  },
+  "wallPathCost": 1,
+  "unlock": {
+   "building": "motor",
+   "citadel": 3
+  },
+  "levels": [
+   {
+    "hp": 380,
+    "damage": 26,
+    "cost": 0,
+    "time": 0
+   },
+   {
+    "hp": 426,
+    "damage": 29,
+    "cost": 8800,
+    "time": 3600
+   },
+   {
+    "hp": 477,
+    "damage": 33,
+    "cost": 21000,
+    "time": 10800
+   },
+   {
+    "hp": 534,
+    "damage": 37,
+    "cost": 51000,
+    "time": 28800
+   },
+   {
+    "hp": 598,
+    "damage": 41,
+    "cost": 100000,
+    "time": 57600
+   },
+   {
+    "hp": 670,
+    "damage": 46,
+    "cost": 200000,
+    "time": 86400
+   }
+  ]
+ },
+ "scavenger": {
+  "name": "Scavenger",
+  "desc": "Fast buggy. Heads for oil and scrap, double damage to the buildings that hold them.",
+  "radius": 8,
+  "cooldown": 0.6,
+  "range": 1.5,
+  "speed": 3.2,
+  "housing": 3,
+  "flying": false,
+  "armor": "light",
+  "mech": true,
+  "prefers": "resource",
+  "mult": {
+   "resource": 2
+  },
+  "wallPathCost": 14,
+  "unlock": {
+   "building": "motor",
+   "citadel": 4
+  },
+  "levels": [
+   {
+    "hp": 150,
+    "damage": 18,
+    "cost": 0,
+    "time": 0
+   },
+   {
+    "hp": 168,
+    "damage": 20,
+    "cost": 21000,
+    "time": 10800
+   },
+   {
+    "hp": 188,
+    "damage": 23,
+    "cost": 51000,
+    "time": 28800
+   },
+   {
+    "hp": 211,
+    "damage": 25,
+    "cost": 100000,
+    "time": 57600
+   },
+   {
+    "hp": 236,
+    "damage": 28,
+    "cost": 200000,
+    "time": 86400
+   },
+   {
+    "hp": 264,
+    "damage": 32,
+    "cost": 300000,
+    "time": 129600
+   }
+  ]
+ },
+ "flyer": {
+  "name": "Flyer",
+  "desc": "Gyrocopter. Flies over walls and hunts defenses.",
+  "radius": 7,
+  "cooldown": 1.2,
+  "range": 1,
+  "speed": 2.4,
+  "housing": 5,
+  "flying": true,
+  "armor": "air",
+  "mech": false,
+  "prefers": "defense",
+  "wallPathCost": 0,
+  "unlock": {
+   "building": "rotor",
+   "citadel": 4
+  },
+  "levels": [
+   {
+    "hp": 130,
+    "damage": 24,
+    "cost": 0,
+    "time": 0
+   },
+   {
+    "hp": 146,
+    "damage": 27,
+    "cost": 26000,
+    "time": 10800
+   },
+   {
+    "hp": 163,
+    "damage": 30,
+    "cost": 64000,
+    "time": 28800
+   },
+   {
+    "hp": 183,
+    "damage": 34,
+    "cost": 130000,
+    "time": 57600
+   },
+   {
+    "hp": 205,
+    "damage": 38,
+    "cost": 250000,
+    "time": 86400
+   },
+   {
+    "hp": 229,
+    "damage": 42,
+    "cost": 380000,
+    "time": 129600
+   }
+  ]
+ },
+ "bulwark": {
+  "name": "Bulwark",
+  "desc": "Heavy tank. Soaks up fire and grinds down defenses.",
+  "radius": 11,
+  "cooldown": 1.5,
+  "range": 2,
+  "speed": 1.1,
+  "housing": 10,
+  "flying": false,
+  "armor": "armor",
+  "mech": true,
+  "prefers": "defense",
+  "mult": {
+   "wall": 3
+  },
+  "wallPathCost": 4,
+  "unlock": {
+   "building": "motor",
+   "citadel": 5
+  },
+  "levels": [
+   {
+    "hp": 1500,
+    "damage": 55,
+    "cost": 0,
+    "time": 0
+   },
+   {
+    "hp": 1680,
+    "damage": 62,
+    "cost": 77000,
+    "time": 28800
+   },
+   {
+    "hp": 1882,
+    "damage": 69,
+    "cost": 150000,
+    "time": 57600
+   },
+   {
+    "hp": 2107,
+    "damage": 77,
+    "cost": 300000,
+    "time": 86400
+   },
+   {
+    "hp": 2360,
+    "damage": 87,
+    "cost": 450000,
+    "time": 129600
+   },
+   {
+    "hp": 2644,
+    "damage": 97,
+    "cost": 680000,
+    "time": 194400
+   }
+  ]
+ },
+ "longshot": {
+  "name": "Longshot",
+  "desc": "Rocket artillery. Outranges turrets, fragile up close.",
+  "radius": 10,
+  "cooldown": 3,
+  "range": 9,
+  "speed": 1.2,
+  "housing": 8,
+  "flying": false,
+  "armor": "armor",
+  "mech": true,
+  "prefers": "defense",
+  "mult": {
+   "defense": 1.25
+  },
+  "wallPathCost": 20,
+  "unlock": {
+   "building": "motor",
+   "citadel": 6
+  },
+  "levels": [
+   {
+    "hp": 300,
+    "damage": 120,
+    "cost": 0,
+    "time": 0
+   },
+   {
+    "hp": 336,
+    "damage": 134,
+    "cost": 160000,
+    "time": 57600
+   },
+   {
+    "hp": 376,
+    "damage": 151,
+    "cost": 330000,
+    "time": 86400
+   },
+   {
+    "hp": 421,
+    "damage": 169,
+    "cost": 490000,
+    "time": 129600
+   },
+   {
+    "hp": 472,
+    "damage": 189,
+    "cost": 730000,
+    "time": 194400
+   },
+   {
+    "hp": 529,
+    "damage": 211,
+    "cost": 1100000,
+    "time": 259200
+   }
+  ]
+ },
+ "wrench": {
+  "name": "Wrench Rig",
+  "desc": "Repair truck. Keeps vehicles alive, cannot fight.",
+  "radius": 9,
+  "cooldown": 1,
+  "range": 0,
+  "healRange": 3,
+  "speed": 1.5,
+  "housing": 6,
+  "flying": false,
+  "armor": "armor",
+  "mech": true,
+  "prefers": "any",
+  "wallPathCost": 0,
+  "unlock": {
+   "building": "motor",
+   "citadel": 6
+  },
+  "levels": [
+   {
+    "hp": 420,
+    "damage": 0,
+    "cost": 0,
+    "time": 0,
+    "heal": 40
+   },
+   {
+    "hp": 470,
+    "damage": 0,
+    "cost": 130000,
+    "time": 57600,
+    "heal": 45
+   },
+   {
+    "hp": 527,
+    "damage": 0,
+    "cost": 250000,
+    "time": 86400,
+    "heal": 50
+   },
+   {
+    "hp": 590,
+    "damage": 0,
+    "cost": 380000,
+    "time": 129600,
+    "heal": 56
+   },
+   {
+    "hp": 661,
+    "damage": 0,
+    "cost": 560000,
+    "time": 194400,
+    "heal": 63
+   },
+   {
+    "hp": 740,
+    "damage": 0,
+    "cost": 840000,
+    "time": 259200,
+    "heal": 70
+   }
+  ]
+ },
+ "thunderwing": {
+  "name": "Thunderwing",
+  "desc": "Heavy bomber. Slow and tough, flattens everything under it.",
+  "radius": 12,
+  "cooldown": 2.5,
+  "range": 1.2,
+  "speed": 1.3,
+  "housing": 12,
+  "flying": true,
+  "armor": "air",
+  "mech": false,
+  "prefers": "defense",
+  "splashRadius": 1.6,
+  "wallPathCost": 0,
+  "unlock": {
+   "building": "rotor",
+   "citadel": 7
+  },
+  "levels": [
+   {
+    "hp": 700,
+    "damage": 130,
+    "cost": 0,
+    "time": 0
+   },
+   {
+    "hp": 784,
+    "damage": 146,
+    "cost": 380000,
+    "time": 86400
+   },
+   {
+    "hp": 878,
+    "damage": 163,
+    "cost": 560000,
+    "time": 129600
+   },
+   {
+    "hp": 983,
+    "damage": 183,
+    "cost": 840000,
+    "time": 194400
+   },
+   {
+    "hp": 1101,
+    "damage": 205,
+    "cost": 1300000,
+    "time": 259200
+   },
+   {
+    "hp": 1234,
+    "damage": 229,
+    "cost": 1900000,
+    "time": 259200
+   }
+  ]
+ }
+}

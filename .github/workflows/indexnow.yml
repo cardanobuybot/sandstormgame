@@ -1,0 +1,33 @@
+# After a push to main, Vercel builds and publishes the site. This job waits until the new version is live and then
+# tells the search engines of the IndexNow group (Bing, Yandex and others) which pages are new or changed.
+# It needs no secrets: the IndexNow key is public by design (site.config.mjs, public/<key>.txt).
+name: Tell search engines about new pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      all:
+        description: Send every page of the sitemap, not only the new ones
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: true
+
+jobs:
+  indexnow:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Wait for the new version, then send the list
+        run: node tools/indexnow.mjs --wait ${{ inputs.all && '--all' || '' }}

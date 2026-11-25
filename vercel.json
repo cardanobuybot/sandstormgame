@@ -1,0 +1,31 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "npm ci",
+  "buildCommand": "node build.mjs",
+  "outputDirectory": "dist",
+  "cleanUrls": true,
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/:path*", "has": [{ "type": "host", "value": "www.sandstormgame.xyz" }], "destination": "https://sandstormgame.xyz/:path*", "permanent": true },
+    { "source": "/:path*", "has": [{ "type": "host", "value": "sandstormgame.vercel.app" }], "destination": "https://sandstormgame.xyz/:path*", "permanent": true },
+    { "source": "/games/dune-clash", "destination": "/dune-clash/", "permanent": true },
+    { "source": "/guides", "destination": "/blog/", "permanent": true }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=(), interest-cohort=()" },
+        { "key": "Content-Security-Policy", "value": "default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; form-action 'none'" }
+      ]
+    },
+    { "source": "/assets/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] },
+    { "source": "/(img|covers|og|brand|press)/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=604800, stale-while-revalidate=2592000" }] },
+    { "source": "/blog/(.*)\\.md", "headers": [{ "key": "Content-Type", "value": "text/markdown; charset=utf-8" }, { "key": "X-Robots-Tag", "value": "noindex" }] },
+    { "source": "/llms-full.txt", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] },
+    { "source": "/build.txt", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }, { "key": "Cache-Control", "value": "no-store" }] }
+  ]
+}

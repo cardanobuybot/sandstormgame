@@ -1,0 +1,936 @@
+{
+ "citadel": {
+  "name": "Citadel",
+  "desc": "Command centre. Its level unlocks buildings and raises their caps. Losing it costs a star.",
+  "category": "core",
+  "size": 4,
+  "unlock": 1,
+  "levels": [
+   {
+    "hp": 1500,
+    "cost": 0,
+    "time": 0,
+    "storage": 1500,
+    "scrapStorage": 1500
+   },
+   {
+    "hp": 2100,
+    "cost": 2000,
+    "time": 900,
+    "storage": 3000,
+    "scrapStorage": 3000
+   },
+   {
+    "hp": 2900,
+    "cost": 8000,
+    "time": 7200,
+    "storage": 5000,
+    "scrapStorage": 5000
+   },
+   {
+    "hp": 4000,
+    "cost": 30000,
+    "time": 21600,
+    "storage": 10000,
+    "scrapStorage": 10000
+   },
+   {
+    "hp": 5400,
+    "cost": 100000,
+    "time": 43200,
+    "storage": 20000,
+    "scrapStorage": 20000
+   },
+   {
+    "hp": 7200,
+    "cost": 250000,
+    "time": 86400,
+    "storage": 40000,
+    "scrapStorage": 40000
+   },
+   {
+    "hp": 9500,
+    "cost": 600000,
+    "time": 172800,
+    "storage": 60000,
+    "scrapStorage": 60000
+   },
+   {
+    "hp": 12500,
+    "cost": 1200000,
+    "time": 259200,
+    "storage": 100000,
+    "scrapStorage": 100000
+   }
+  ]
+ },
+ "collector": {
+  "name": "Pumpjack",
+  "desc": "Pumps oil around the clock. Raiders take half of what sits inside.",
+  "category": "resource",
+  "size": 2,
+  "unlock": 1,
+  "levels": [
+   {
+    "hp": 400,
+    "cost": 150,
+    "time": 10,
+    "ratePerMinute": 10,
+    "capacity": 3600
+   },
+   {
+    "hp": 480,
+    "cost": 450,
+    "time": 60,
+    "ratePerMinute": 20,
+    "capacity": 7200
+   },
+   {
+    "hp": 576,
+    "cost": 1800,
+    "time": 600,
+    "ratePerMinute": 40,
+    "capacity": 14400
+   },
+   {
+    "hp": 691,
+    "cost": 5500,
+    "time": 3600,
+    "ratePerMinute": 75,
+    "capacity": 27000
+   },
+   {
+    "hp": 829,
+    "cost": 13000,
+    "time": 10800,
+    "ratePerMinute": 133,
+    "capacity": 47880
+   },
+   {
+    "hp": 995,
+    "cost": 32000,
+    "time": 28800,
+    "ratePerMinute": 217,
+    "capacity": 78120
+   },
+   {
+    "hp": 1194,
+    "cost": 63000,
+    "time": 57600,
+    "ratePerMinute": 333,
+    "capacity": 119880
+   },
+   {
+    "hp": 1433,
+    "cost": 130000,
+    "time": 86400,
+    "ratePerMinute": 500,
+    "capacity": 180000
+   }
+  ]
+ },
+ "storage": {
+  "name": "Oil Tank",
+  "desc": "Stores oil. Raiders can drain a share of it.",
+  "category": "resource",
+  "size": 3,
+  "unlock": 1,
+  "levels": [
+   {
+    "hp": 700,
+    "cost": 210,
+    "time": 10,
+    "storage": 1500
+   },
+   {
+    "hp": 840,
+    "cost": 630,
+    "time": 60,
+    "storage": 6000
+   },
+   {
+    "hp": 1008,
+    "cost": 2500,
+    "time": 600,
+    "storage": 15000
+   },
+   {
+    "hp": 1210,
+    "cost": 7700,
+    "time": 3600,
+    "storage": 50000
+   },
+   {
+    "hp": 1452,
+    "cost": 18000,
+    "time": 10800,
+    "storage": 120000
+   },
+   {
+    "hp": 1742,
+    "cost": 45000,
+    "time": 28800,
+    "storage": 200000
+   },
+   {
+    "hp": 2090,
+    "cost": 88000,
+    "time": 57600,
+    "storage": 400000
+   },
+   {
+    "hp": 2508,
+    "cost": 180000,
+    "time": 86400,
+    "storage": 600000
+   }
+  ]
+ },
+ "salvage": {
+  "name": "Salvage Yard",
+  "desc": "Cuts scrap out of a wrecked ship around the clock. Raiders take half of what sits inside.",
+  "category": "resource",
+  "size": 3,
+  "unlock": 1,
+  "levels": [
+   {
+    "hp": 400,
+    "cost": 150,
+    "time": 10,
+    "ratePerMinute": 10,
+    "capacity": 3600
+   },
+   {
+    "hp": 480,
+    "cost": 450,
+    "time": 60,
+    "ratePerMinute": 20,
+    "capacity": 7200
+   },
+   {
+    "hp": 576,
+    "cost": 1800,
+    "time": 600,
+    "ratePerMinute": 40,
+    "capacity": 14400
+   },
+   {
+    "hp": 691,
+    "cost": 5500,
+    "time": 3600,
+    "ratePerMinute": 75,
+    "capacity": 27000
+   },
+   {
+    "hp": 829,
+    "cost": 13000,
+    "time": 10800,
+    "ratePerMinute": 133,
+    "capacity": 47880
+   },
+   {
+    "hp": 995,
+    "cost": 32000,
+    "time": 28800,
+    "ratePerMinute": 217,
+    "capacity": 78120
+   },
+   {
+    "hp": 1194,
+    "cost": 63000,
+    "time": 57600,
+    "ratePerMinute": 333,
+    "capacity": 119880
+   },
+   {
+    "hp": 1433,
+    "cost": 130000,
+    "time": 86400,
+    "ratePerMinute": 500,
+    "capacity": 180000
+   }
+  ]
+ },
+ "depot": {
+  "name": "Scrap Depot",
+  "desc": "Stores scrap. Raiders can haul off a share of it.",
+  "category": "resource",
+  "size": 3,
+  "unlock": 1,
+  "levels": [
+   {
+    "hp": 700,
+    "cost": 210,
+    "time": 10,
+    "scrapStorage": 1500
+   },
+   {
+    "hp": 840,
+    "cost": 630,
+    "time": 60,
+    "scrapStorage": 6000
+   },
+   {
+    "hp": 1008,
+    "cost": 2500,
+    "time": 600,
+    "scrapStorage": 15000
+   },
+   {
+    "hp": 1210,
+    "cost": 7700,
+    "time": 3600,
+    "scrapStorage": 50000
+   },
+   {
+    "hp": 1452,
+    "cost": 18000,
+    "time": 10800,
+    "scrapStorage": 120000
+   },
+   {
+    "hp": 1742,
+    "cost": 45000,
+    "time": 28800,
+    "scrapStorage": 200000
+   },
+   {
+    "hp": 2090,
+    "cost": 88000,
+    "time": 57600,
+    "scrapStorage": 400000
+   },
+   {
+    "hp": 2508,
+    "cost": 180000,
+    "time": 86400,
+    "scrapStorage": 600000
+   }
+  ]
+ },
+ "barracks": {
+  "name": "Barracks",
+  "desc": "Houses your army and trains infantry.",
+  "category": "army",
+  "size": 3,
+  "unlock": 1,
+  "levels": [
+   {
+    "hp": 600,
+    "cost": 240,
+    "time": 10,
+    "housing": 20
+   },
+   {
+    "hp": 720,
+    "cost": 720,
+    "time": 60,
+    "housing": 24
+   },
+   {
+    "hp": 864,
+    "cost": 2800,
+    "time": 600,
+    "housing": 28
+   },
+   {
+    "hp": 1037,
+    "cost": 8800,
+    "time": 3600,
+    "housing": 32
+   },
+   {
+    "hp": 1244,
+    "cost": 21000,
+    "time": 10800,
+    "housing": 36
+   },
+   {
+    "hp": 1493,
+    "cost": 51000,
+    "time": 28800,
+    "housing": 40
+   },
+   {
+    "hp": 1792,
+    "cost": 100000,
+    "time": 57600,
+    "housing": 44
+   },
+   {
+    "hp": 2150,
+    "cost": 200000,
+    "time": 86400,
+    "housing": 48
+   }
+  ]
+ },
+ "proving": {
+  "name": "Proving Ground",
+  "desc": "Researches unit upgrades. Its level caps unit levels.",
+  "category": "army",
+  "size": 3,
+  "unlock": 2,
+  "levels": [
+   {
+    "hp": 650,
+    "cost": 900,
+    "time": 60
+   },
+   {
+    "hp": 780,
+    "cost": 3500,
+    "time": 600
+   },
+   {
+    "hp": 936,
+    "cost": 11000,
+    "time": 3600
+   },
+   {
+    "hp": 1123,
+    "cost": 26000,
+    "time": 10800
+   },
+   {
+    "hp": 1348,
+    "cost": 64000,
+    "time": 28800
+   }
+  ]
+ },
+ "motor": {
+  "name": "Motor Works",
+  "desc": "Builds vehicles: rams, buggies, tanks, artillery.",
+  "category": "army",
+  "size": 3,
+  "unlock": 3,
+  "levels": [
+   {
+    "hp": 800,
+    "cost": 4200,
+    "time": 600,
+    "housing": 6
+   },
+   {
+    "hp": 960,
+    "cost": 13000,
+    "time": 3600,
+    "housing": 8
+   },
+   {
+    "hp": 1152,
+    "cost": 31000,
+    "time": 10800,
+    "housing": 10
+   },
+   {
+    "hp": 1382,
+    "cost": 77000,
+    "time": 28800,
+    "housing": 12
+   },
+   {
+    "hp": 1659,
+    "cost": 150000,
+    "time": 57600,
+    "housing": 14
+   },
+   {
+    "hp": 1991,
+    "cost": 300000,
+    "time": 86400,
+    "housing": 16
+   }
+  ]
+ },
+ "rotor": {
+  "name": "Rotor Pad",
+  "desc": "Launches aircraft.",
+  "category": "army",
+  "size": 3,
+  "unlock": 4,
+  "levels": [
+   {
+    "hp": 750,
+    "cost": 15000,
+    "time": 3600,
+    "housing": 6
+   },
+   {
+    "hp": 900,
+    "cost": 36000,
+    "time": 10800,
+    "housing": 8
+   },
+   {
+    "hp": 1080,
+    "cost": 90000,
+    "time": 28800,
+    "housing": 10
+   },
+   {
+    "hp": 1296,
+    "cost": 180000,
+    "time": 57600,
+    "housing": 12
+   },
+   {
+    "hp": 1555,
+    "cost": 350000,
+    "time": 86400,
+    "housing": 14
+   }
+  ]
+ },
+ "turret": {
+  "name": "Turret",
+  "desc": "Rapid fire at ground targets. Shreds infantry.",
+  "category": "defense",
+  "size": 2,
+  "unlock": 1,
+  "pays": "scrap",
+  "targets": "ground",
+  "attack": "direct",
+  "bonus": {
+   "light": 1.5
+  },
+  "levels": [
+   {
+    "hp": 500,
+    "cost": 240,
+    "time": 10,
+    "damage": 22,
+    "range": 6.5,
+    "cooldown": 0.8
+   },
+   {
+    "hp": 600,
+    "cost": 720,
+    "time": 60,
+    "damage": 25,
+    "range": 6.7,
+    "cooldown": 0.8
+   },
+   {
+    "hp": 720,
+    "cost": 2800,
+    "time": 600,
+    "damage": 29,
+    "range": 6.8,
+    "cooldown": 0.8
+   },
+   {
+    "hp": 864,
+    "cost": 8800,
+    "time": 3600,
+    "damage": 33,
+    "range": 7,
+    "cooldown": 0.8
+   },
+   {
+    "hp": 1037,
+    "cost": 21000,
+    "time": 10800,
+    "damage": 38,
+    "range": 7.1,
+    "cooldown": 0.8
+   },
+   {
+    "hp": 1244,
+    "cost": 51000,
+    "time": 28800,
+    "damage": 44,
+    "range": 7.3,
+    "cooldown": 0.8
+   },
+   {
+    "hp": 1493,
+    "cost": 100000,
+    "time": 57600,
+    "damage": 51,
+    "range": 7.4,
+    "cooldown": 0.8
+   },
+   {
+    "hp": 1792,
+    "cost": 200000,
+    "time": 86400,
+    "damage": 59,
+    "range": 7.5,
+    "cooldown": 0.8
+   }
+  ]
+ },
+ "shellpit": {
+  "name": "Shellpit",
+  "desc": "Lobs shells that hit an area. Cannot hit close targets or aircraft.",
+  "category": "defense",
+  "size": 2,
+  "unlock": 3,
+  "pays": "scrap",
+  "targets": "ground",
+  "attack": "shell",
+  "shellTime": 1.2,
+  "minRange": 3,
+  "bonus": {
+   "light": 1.25
+  },
+  "levels": [
+   {
+    "hp": 600,
+    "cost": 4600,
+    "time": 600,
+    "damage": 34,
+    "range": 10,
+    "cooldown": 3.5,
+    "splashRadius": 1.6
+   },
+   {
+    "hp": 720,
+    "cost": 14000,
+    "time": 3600,
+    "damage": 39,
+    "range": 10,
+    "cooldown": 3.5,
+    "splashRadius": 1.7
+   },
+   {
+    "hp": 864,
+    "cost": 34000,
+    "time": 10800,
+    "damage": 45,
+    "range": 10,
+    "cooldown": 3.5,
+    "splashRadius": 1.7
+   },
+   {
+    "hp": 1037,
+    "cost": 83000,
+    "time": 28800,
+    "damage": 52,
+    "range": 10,
+    "cooldown": 3.5,
+    "splashRadius": 1.8
+   },
+   {
+    "hp": 1244,
+    "cost": 160000,
+    "time": 57600,
+    "damage": 59,
+    "range": 10,
+    "cooldown": 3.5,
+    "splashRadius": 1.8
+   },
+   {
+    "hp": 1493,
+    "cost": 330000,
+    "time": 86400,
+    "damage": 68,
+    "range": 10,
+    "cooldown": 3.5,
+    "splashRadius": 1.9
+   }
+  ]
+ },
+ "flak": {
+  "name": "Flak Nest",
+  "desc": "Anti-air gun. Long reach, ignores ground units.",
+  "category": "defense",
+  "size": 2,
+  "unlock": 4,
+  "pays": "scrap",
+  "targets": "air",
+  "attack": "direct",
+  "levels": [
+   {
+    "hp": 650,
+    "cost": 15000,
+    "time": 3600,
+    "damage": 70,
+    "range": 8.5,
+    "cooldown": 1
+   },
+   {
+    "hp": 780,
+    "cost": 36000,
+    "time": 10800,
+    "damage": 81,
+    "range": 8.5,
+    "cooldown": 1
+   },
+   {
+    "hp": 936,
+    "cost": 90000,
+    "time": 28800,
+    "damage": 93,
+    "range": 8.5,
+    "cooldown": 1
+   },
+   {
+    "hp": 1123,
+    "cost": 180000,
+    "time": 57600,
+    "damage": 106,
+    "range": 8.5,
+    "cooldown": 1
+   },
+   {
+    "hp": 1348,
+    "cost": 350000,
+    "time": 86400,
+    "damage": 122,
+    "range": 8.5,
+    "cooldown": 1
+   }
+  ]
+ },
+ "blind": {
+  "name": "Sand Blind",
+  "desc": "Hidden gun. Pops up when enemies come close. Strong against vehicles.",
+  "category": "defense",
+  "size": 2,
+  "unlock": 5,
+  "pays": "scrap",
+  "targets": "both",
+  "attack": "direct",
+  "hidden": true,
+  "revealRange": 4.5,
+  "bonus": {
+   "armor": 1.5
+  },
+  "levels": [
+   {
+    "hp": 550,
+    "cost": 39000,
+    "time": 10800,
+    "damage": 40,
+    "range": 5.5,
+    "cooldown": 0.5
+   },
+   {
+    "hp": 660,
+    "cost": 96000,
+    "time": 28800,
+    "damage": 46,
+    "range": 5.5,
+    "cooldown": 0.5
+   },
+   {
+    "hp": 792,
+    "cost": 190000,
+    "time": 57600,
+    "damage": 53,
+    "range": 5.5,
+    "cooldown": 0.5
+   },
+   {
+    "hp": 950,
+    "cost": 380000,
+    "time": 86400,
+    "damage": 61,
+    "range": 5.5,
+    "cooldown": 0.5
+   }
+  ]
+ },
+ "rocket": {
+  "name": "Rocket Battery",
+  "desc": "Slow heavy rockets against ground and air. Outranges artillery.",
+  "category": "defense",
+  "size": 2,
+  "unlock": 6,
+  "pays": "scrap",
+  "targets": "both",
+  "attack": "direct",
+  "bonus": {
+   "armor": 1.5
+  },
+  "levels": [
+   {
+    "hp": 900,
+    "cost": 130000,
+    "time": 28800,
+    "damage": 130,
+    "range": 10,
+    "cooldown": 2.2
+   },
+   {
+    "hp": 1080,
+    "cost": 250000,
+    "time": 57600,
+    "damage": 150,
+    "range": 10,
+    "cooldown": 2.2
+   },
+   {
+    "hp": 1296,
+    "cost": 500000,
+    "time": 86400,
+    "damage": 172,
+    "range": 10,
+    "cooldown": 2.2
+   }
+  ]
+ },
+ "wall": {
+  "name": "Wall",
+  "desc": "Stops ground units until breached.",
+  "category": "wall",
+  "size": 1,
+  "unlock": 1,
+  "pays": "scrap",
+  "levels": [
+   {
+    "hp": 350,
+    "cost": 10,
+    "time": 0
+   },
+   {
+    "hp": 455,
+    "cost": 30,
+    "time": 0
+   },
+   {
+    "hp": 592,
+    "cost": 100,
+    "time": 0
+   },
+   {
+    "hp": 769,
+    "cost": 350,
+    "time": 0
+   },
+   {
+    "hp": 1000,
+    "cost": 900,
+    "time": 0
+   },
+   {
+    "hp": 1300,
+    "cost": 2200,
+    "time": 0
+   },
+   {
+    "hp": 1689,
+    "cost": 4500,
+    "time": 0
+   },
+   {
+    "hp": 2196,
+    "cost": 8000,
+    "time": 0
+   }
+  ]
+ },
+ "trap": {
+  "name": "Mine",
+  "desc": "Buried charge. Blows up under ground units.",
+  "category": "trap",
+  "size": 1,
+  "unlock": 2,
+  "pays": "scrap",
+  "targets": "ground",
+  "levels": [
+   {
+    "hp": 1,
+    "cost": 230,
+    "time": 18,
+    "damage": 110,
+    "triggerRadius": 1.2,
+    "splashRadius": 2
+   },
+   {
+    "hp": 1,
+    "cost": 880,
+    "time": 180,
+    "damage": 132,
+    "triggerRadius": 1.2,
+    "splashRadius": 2.1
+   },
+   {
+    "hp": 1,
+    "cost": 2800,
+    "time": 1080,
+    "damage": 158,
+    "triggerRadius": 1.2,
+    "splashRadius": 2.2
+   },
+   {
+    "hp": 1,
+    "cost": 6500,
+    "time": 3240,
+    "damage": 190,
+    "triggerRadius": 1.2,
+    "splashRadius": 2.3
+   },
+   {
+    "hp": 1,
+    "cost": 16000,
+    "time": 8640,
+    "damage": 228,
+    "triggerRadius": 1.2,
+    "splashRadius": 2.4
+   },
+   {
+    "hp": 1,
+    "cost": 32000,
+    "time": 17280,
+    "damage": 274,
+    "triggerRadius": 1.2,
+    "splashRadius": 2.5
+   },
+   {
+    "hp": 1,
+    "cost": 63000,
+    "time": 25920,
+    "damage": 328,
+    "triggerRadius": 1.2,
+    "splashRadius": 2.6
+   }
+  ]
+ },
+ "snare": {
+  "name": "Sky Snare",
+  "desc": "Hidden launcher. Fires a burst at aircraft passing overhead.",
+  "category": "trap",
+  "size": 1,
+  "unlock": 5,
+  "pays": "scrap",
+  "targets": "air",
+  "levels": [
+   {
+    "hp": 1,
+    "cost": 7800,
+    "time": 3240,
+    "damage": 320,
+    "triggerRadius": 1.6,
+    "splashRadius": 2.4
+   },
+   {
+    "hp": 1,
+    "cost": 19000,
+    "time": 8640,
+    "damage": 384,
+    "triggerRadius": 1.6,
+    "splashRadius": 2.4
+   },
+   {
+    "hp": 1,
+    "cost": 38000,
+    "time": 17280,
+    "damage": 461,
+    "triggerRadius": 1.6,
+    "splashRadius": 2.4
+   },
+   {
+    "hp": 1,
+    "cost": 75000,
+    "time": 25920,
+    "damage": 553,
+    "triggerRadius": 1.6,
+    "splashRadius": 2.4
+   }
+  ]
+ }
+}

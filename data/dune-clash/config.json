@@ -1,0 +1,351 @@
+{
+ "gridSize": 50,
+ "baseMargin": 5,
+ "tickRate": 10,
+ "battleDuration": 180,
+ "scoutTime": 30,
+ "resourceName": "Oil",
+ "startResource": 1000,
+ "startScrap": 500,
+ "refundRate": 0.5,
+ "stars": {
+  "percentForStar": 50,
+  "percentForAll": 100
+ },
+ "citadel": [
+  {
+   "limits": {
+    "collector": 2,
+    "storage": 1,
+    "salvage": 1,
+    "depot": 1,
+    "barracks": 1,
+    "proving": 0,
+    "motor": 0,
+    "rotor": 0,
+    "turret": 1,
+    "shellpit": 0,
+    "flak": 0,
+    "blind": 0,
+    "rocket": 0,
+    "wall": 20,
+    "trap": 0,
+    "snare": 0
+   },
+   "builders": 2,
+   "lootShare": 0.2,
+   "nextCost": 5
+  },
+  {
+   "limits": {
+    "collector": 3,
+    "storage": 1,
+    "salvage": 2,
+    "depot": 1,
+    "barracks": 1,
+    "proving": 1,
+    "motor": 0,
+    "rotor": 0,
+    "turret": 2,
+    "shellpit": 0,
+    "flak": 0,
+    "blind": 0,
+    "rocket": 0,
+    "wall": 50,
+    "trap": 2,
+    "snare": 0
+   },
+   "builders": 2,
+   "lootShare": 0.2,
+   "nextCost": 10
+  },
+  {
+   "limits": {
+    "collector": 3,
+    "storage": 2,
+    "salvage": 2,
+    "depot": 2,
+    "barracks": 2,
+    "proving": 1,
+    "motor": 1,
+    "rotor": 0,
+    "turret": 2,
+    "shellpit": 1,
+    "flak": 0,
+    "blind": 0,
+    "rocket": 0,
+    "wall": 75,
+    "trap": 3,
+    "snare": 0
+   },
+   "builders": 2,
+   "lootShare": 0.2,
+   "nextCost": 25
+  },
+  {
+   "limits": {
+    "collector": 4,
+    "storage": 2,
+    "salvage": 3,
+    "depot": 2,
+    "barracks": 2,
+    "proving": 1,
+    "motor": 1,
+    "rotor": 1,
+    "turret": 3,
+    "shellpit": 1,
+    "flak": 1,
+    "blind": 0,
+    "rocket": 0,
+    "wall": 100,
+    "trap": 4,
+    "snare": 0
+   },
+   "builders": 3,
+   "lootShare": 0.2,
+   "nextCost": 60
+  },
+  {
+   "limits": {
+    "collector": 4,
+    "storage": 2,
+    "salvage": 3,
+    "depot": 2,
+    "barracks": 3,
+    "proving": 1,
+    "motor": 1,
+    "rotor": 1,
+    "turret": 3,
+    "shellpit": 1,
+    "flak": 1,
+    "blind": 1,
+    "rocket": 0,
+    "wall": 125,
+    "trap": 5,
+    "snare": 2
+   },
+   "builders": 3,
+   "lootShare": 0.16,
+   "nextCost": 120
+  },
+  {
+   "limits": {
+    "collector": 5,
+    "storage": 3,
+    "salvage": 4,
+    "depot": 3,
+    "barracks": 3,
+    "proving": 1,
+    "motor": 1,
+    "rotor": 1,
+    "turret": 4,
+    "shellpit": 2,
+    "flak": 1,
+    "blind": 1,
+    "rocket": 1,
+    "wall": 150,
+    "trap": 6,
+    "snare": 3
+   },
+   "builders": 3,
+   "lootShare": 0.16,
+   "nextCost": 250
+  },
+  {
+   "limits": {
+    "collector": 5,
+    "storage": 3,
+    "salvage": 4,
+    "depot": 3,
+    "barracks": 4,
+    "proving": 1,
+    "motor": 1,
+    "rotor": 1,
+    "turret": 4,
+    "shellpit": 2,
+    "flak": 2,
+    "blind": 2,
+    "rocket": 1,
+    "wall": 175,
+    "trap": 7,
+    "snare": 4
+   },
+   "builders": 4,
+   "lootShare": 0.14,
+   "nextCost": 400
+  },
+  {
+   "limits": {
+    "collector": 6,
+    "storage": 4,
+    "salvage": 5,
+    "depot": 4,
+    "barracks": 4,
+    "proving": 1,
+    "motor": 1,
+    "rotor": 1,
+    "turret": 5,
+    "shellpit": 3,
+    "flak": 2,
+    "blind": 2,
+    "rocket": 2,
+    "wall": 200,
+    "trap": 8,
+    "snare": 5
+   },
+   "builders": 4,
+   "lootShare": 0.14,
+   "nextCost": 600
+  }
+ ],
+ "lootByLevelDiff": {
+  "0": 1,
+  "1": 1.2,
+  "2": 1.5,
+  "3": 1.75,
+  "-3": 0.25,
+  "-2": 0.5,
+  "-1": 0.8
+ },
+ "collectorLootShare": 0.5,
+ "pvp": {
+  "shieldHours": 8,
+  "shieldLootShare": 0.3,
+  "revengeHours": 12,
+  "trophies": [
+   0,
+   8,
+   16,
+   30
+  ],
+  "defenseLossShare": 0.5,
+  "matchRange": 1,
+  "battleDeadlineSec": 420
+ },
+ "startLayout": [
+  {
+   "type": "citadel",
+   "level": 1,
+   "x": 23,
+   "y": 23
+  },
+  {
+   "type": "collector",
+   "level": 1,
+   "x": 19,
+   "y": 23
+  },
+  {
+   "type": "storage",
+   "level": 1,
+   "x": 28,
+   "y": 23
+  },
+  {
+   "type": "barracks",
+   "level": 1,
+   "x": 23,
+   "y": 28
+  },
+  {
+   "type": "turret",
+   "level": 1,
+   "x": 24,
+   "y": 20
+  }
+ ],
+ "crystals": {
+  "start": 50,
+  "citadelReward": [
+   0,
+   0,
+   10,
+   20,
+   30,
+   50,
+   75,
+   100,
+   150
+  ],
+  "dailyWin": 5,
+  "finish": [
+   [
+    0,
+    0
+   ],
+   [
+    60,
+    1
+   ],
+   [
+    3600,
+    20
+   ],
+   [
+    86400,
+    250
+   ],
+   [
+    604800,
+    1000
+   ]
+  ],
+  "oil": [
+   [
+    0,
+    0
+   ],
+   [
+    100,
+    1
+   ],
+   [
+    1000,
+    4
+   ],
+   [
+    10000,
+    20
+   ],
+   [
+    100000,
+    100
+   ],
+   [
+    1000000,
+    500
+   ],
+   [
+    10000000,
+    2500
+   ]
+  ],
+  "packs": [
+   {
+    "id": "crystals_100",
+    "crystals": 100,
+    "name": "Handful of Crystals"
+   },
+   {
+    "id": "crystals_550",
+    "crystals": 550,
+    "name": "Pouch of Crystals"
+   },
+   {
+    "id": "crystals_1200",
+    "crystals": 1200,
+    "name": "Bag of Crystals"
+   },
+   {
+    "id": "crystals_2600",
+    "crystals": 2600,
+    "name": "Chest of Crystals"
+   },
+   {
+    "id": "crystals_7000",
+    "crystals": 7000,
+    "name": "Crate of Crystals"
+   }
+  ]
+ }
+}

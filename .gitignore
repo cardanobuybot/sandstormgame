@@ -1,7 +1,6 @@
-node_modules/
-dist/
-.vercel/
-.env*
+node_modules
+dist
 .DS_Store
-*.log
 .vercel
+.cover.html
+.cover.png

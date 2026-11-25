@@ -1,0 +1,19 @@
+{
+  "name": "Sandmaw",
+  "description": "A giant sand worm. It travels under the dunes toward footsteps and engine noise and bursts out beneath ground units. It ignores buildings and cannot reach flyers. Above the sand it can be killed: nearby troops drop what they are doing and fight it.",
+  "damage": 85,
+  "cooldown": 1.5,
+  "range": 1.3,
+  "speed": 2.2,
+  "splashRadius": 1.6,
+  "hp": 150,
+  "hpPerHousing": 12,
+  "alertRange": 9,
+  "surfaceTime": 2.5,
+  "battle": {
+    "spawnChance": 0.5,
+    "minTime": 20,
+    "maxTime": 100,
+    "duration": 45
+  }
+}
