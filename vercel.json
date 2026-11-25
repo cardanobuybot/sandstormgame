@@ -7,10 +7,10 @@
   "cleanUrls": true,
   "trailingSlash": true,
   "redirects": [
-    { "source": "/:path*", "has": [{ "type": "host", "value": "www.sandstormgame.xyz" }], "destination": "https://sandstormgame.xyz/:path*", "permanent": true },
-    { "source": "/:path*", "has": [{ "type": "host", "value": "sandstormgame.vercel.app" }], "destination": "https://sandstormgame.xyz/:path*", "permanent": true },
-    { "source": "/games/dune-clash", "destination": "/dune-clash/", "permanent": true },
-    { "source": "/guides", "destination": "/blog/", "permanent": true }
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "www.sandstormgame.xyz" }], "destination": "https://sandstormgame.xyz/$1", "permanent": true },
+    { "source": "/(.*)", "has": [{ "type": "host", "value": "sandstormgame.vercel.app" }], "destination": "https://sandstormgame.xyz/$1", "permanent": true },
+    { "source": "/games/dune-clash(/?)", "destination": "/dune-clash/", "permanent": true },
+    { "source": "/guides(/?)", "destination": "/blog/", "permanent": true }
   ],
   "headers": [
     {
